@@ -19,16 +19,24 @@ h1.parentNode.removeChild(h1);
 
 
 $('.hide-pars').click(hidePars);
+
 function hidePars() {
     $('p').hide();
 }
 
-document.querySelectorAll('.digits')
-.forEach( el => el.addEventListener('click', digitClick ) );
+document.querySelectorAll('.digits, .operation')
+    .forEach(el => el.addEventListener('click', digitOperClick));
 
-function digitClick(e) {
+function digitOperClick(e) {
     const target = e.target;
     const display = document.querySelector('.display');
     display.value += target.innerText;
 }
 
+document.querySelector('.equal')
+.addEventListener('click', equal);
+
+function equal() {
+    const display = document.querySelector('.display');
+    display.value = eval(display.value);
+}
